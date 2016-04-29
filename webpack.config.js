@@ -1,6 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const merge = require('webpack-merge');
+const validate = require('webpack-validator');
 
 const PATHS = {
   app: path.join(__dirname, '/public/app.jsx'),
@@ -44,4 +45,4 @@ const availableConfigs = {
 
 const currentConfig = availableConfigs[process.env.epm_lifecycle_event] || availableConfigs['default'];
 
-module.exports = currentConfig;
+module.exports = validate(currentConfig);
