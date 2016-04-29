@@ -1,12 +1,14 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const merge = require('webpack-merge');
+
 const PATHS = {
   app: path.join(__dirname, '/public/app.jsx'),
   build: path.join(__dirname, '/public/build'),
   indexTemplate: path.join(__dirname, '/public/template.html')
 };
 
-module.exports = {
+const common = {
     entry: PATHS.app,
     output: {
         path:    PATHS.build,
@@ -25,9 +27,21 @@ module.exports = {
          },
       ]
     },
-    plugins: [new HtmlWebpackPlugin({
-      template: PATHS.indexTemplate,
-      title: 'arroz'
-    })]
+    plugins: [
+      new HtmlWebpackPlugin({
+        template: PATHS.indexTemplate,
+        title: 'arroz'
+      })
+  ]
 
 };
+
+
+const availableConfigs = {
+  'build': merge(common, {}),
+  'default': merge(common, {})
+};
+
+const currentConfig = availableConfigs[process.env.epm_lifecycle_event] || availableConfigs['default'];
+
+module.exports = currentConfig;
