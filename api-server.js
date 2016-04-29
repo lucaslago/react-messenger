@@ -3,8 +3,7 @@ const path = require('path');
 const express = require('express');
 const bodyParser = require('body-parser');
 
-
-export default function (PORT) {
+const startApiServer = function(PORT) {
   const app = express();
   const COMMENTS_FILE = path.join(__dirname, 'comments.json');
 
@@ -60,7 +59,8 @@ export default function (PORT) {
 
 
   app.listen(app.get('port'), () => {
-    console.log('Server started: http://localhost:' + app.get('port') + '/');
+    console.log(`Server started: http://localhost: ${app.get('port')}/`);
   });
+}
 
-};
+module.exports = startApiServer;

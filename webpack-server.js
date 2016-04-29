@@ -2,7 +2,7 @@ const webpack = require('webpack');
 const WebpackDevServer = require('webpack-dev-server');
 const config = require('./webpack.config.js');
 
-export default (PORT) => {
+const startWebpackServer = function (PORT) {
   const server = new WebpackDevServer(webpack(config), {
     proxy: {
       "*" : `http://localhost:${PORT + 1}`
@@ -19,8 +19,13 @@ export default (PORT) => {
      progress: true,
 
      // Display only errors to reduce the amount of output.
-     stats: 'errors-only'
+     stats: 'errors-only',
+    // host: process.env.HOST,
+    // port: process.env.PORT
 
   });
   server.listen(PORT, 'localhost');
+  console.log(`webpack server started: http://localhost:${PORT}`)
 }
+
+module.exports = startWebpackServer;

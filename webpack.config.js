@@ -2,6 +2,7 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const merge = require('webpack-merge');
 const validate = require('webpack-validator');
+const webpack = require('webpack');
 
 const PATHS = {
   app: path.join(__dirname, '/public/app.jsx'),
@@ -9,8 +10,11 @@ const PATHS = {
   indexTemplate: path.join(__dirname, '/public/template.html')
 };
 
+process.env.BABEL_ENV = process.env.NODE_ENV;
+
+
 const common = {
-    entry: PATHS.app,
+    entry: [PATHS.app],
     output: {
         path:    PATHS.build,
         filename: 'bundle.js',
@@ -39,10 +43,19 @@ const common = {
 
 
 const availableConfigs = {
-  'build': merge(common, {}),
+  'development': merge(common, {
+    entry: [
+      'webpack-dev-server/client?http://0.0.0.0:8079',
+      'webpack/hot/only-dev-server',
+    ],
+    plugins: [
+      new webpack.HotModuleReplacementPlugin()
+    ],
+    devtool: 'eval-source-map'
+  }),
   'default': merge(common, {})
 };
 
-const currentConfig = availableConfigs[process.env.epm_lifecycle_event] || availableConfigs['default'];
+const currentConfig = availableConfigs[process.env.NODE_ENV] || availableConfigs['default'];
 
 module.exports = validate(currentConfig);
