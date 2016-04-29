@@ -10,6 +10,7 @@ const PATHS = {
   indexTemplate: path.join(__dirname, '/public/template.html')
 };
 
+// not sure this is needed anymore
 process.env.BABEL_ENV = process.env.NODE_ENV;
 
 
