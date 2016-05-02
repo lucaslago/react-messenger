@@ -1,3 +1,4 @@
+const logger = require('./logger');
 const fs = require('fs');
 const path = require('path');
 const express = require('express');
@@ -27,7 +28,7 @@ const startApiServer = function(PORT) {
   app.get('/api/comments', (req, res) => {
     fs.readFile(COMMENTS_FILE, (err, data) => {
       if (err) {
-        console.error(err);
+        logServerError(err);
         process.exit(1);
       }
       res.json(JSON.parse(data));
@@ -37,7 +38,7 @@ const startApiServer = function(PORT) {
   app.post('/api/comments', (req, res) => {
     fs.readFile(COMMENTS_FILE, (err, data) => {
       if (err) {
-        console.error(err);
+        logServerError(err);
         process.exit(1);
       }
       var comments = JSON.parse(data);
@@ -49,7 +50,7 @@ const startApiServer = function(PORT) {
       comments.push(newComment);
       fs.writeFile(COMMENTS_FILE, JSON.stringify(comments, null, 4), (err) => {
         if (err) {
-          console.error(err);
+          logServerError(err);
           process.exit(1);
         }
         res.json(comments);
@@ -59,8 +60,12 @@ const startApiServer = function(PORT) {
 
 
   app.listen(app.get('port'), () => {
-    console.log(`Server started: http://localhost: ${app.get('port')}/`);
+    logger.logSuccess('API server started:', `http://localhost:${app.get('port')}/`)
   });
+}
+
+const logServerError = function(errorMessage) {
+  logger.logError('Error', errorMessage);
 }
 
 module.exports = startApiServer;
