@@ -5,9 +5,9 @@ const validate = require('webpack-validator');
 const webpack = require('webpack');
 
 const PATHS = {
-  app: path.join(__dirname, '/public/app.jsx'),
-  build: path.join(__dirname, '/public/build'),
-  indexTemplate: path.join(__dirname, '/public/template.html')
+  app: path.join(__dirname, 'src/frontend/app.jsx'),
+  build: path.join(__dirname, '/build'),
+  indexTemplate: path.join(__dirname, 'src/frontend/template.html')
 };
 
 // not sure this is needed anymore
@@ -24,7 +24,7 @@ const common = {
       preLoaders: [
         {
           test: /\.jsx?$/,
-          loaders: ['eslint'],
+          loaders: ['eslint-loader'],
           include: PATHS.app
         }
       ],
@@ -45,8 +45,12 @@ const common = {
         template: PATHS.indexTemplate,
         title: 'arroz'
       })
-  ]
-
+  ],
+  resolve: {
+    alias: {
+      buildDir: PATHS.build
+    }
+  }
 };
 
 

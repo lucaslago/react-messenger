@@ -1,4 +1,4 @@
-const logger = require('./logger');
+const logger = require('../utils/logger');
 const fs = require('fs');
 const path = require('path');
 const express = require('express');
@@ -10,7 +10,7 @@ const startApiServer = function(PORT) {
 
   app.set('port', PORT);
 
-  app.use('/', express.static(path.join(__dirname, '../public/build')));
+  app.use('/', express.static(path.join(__dirname, '../../build')));
   app.use(bodyParser.json());
   app.use(bodyParser.urlencoded({extended: true}));
 
@@ -64,7 +64,7 @@ const startApiServer = function(PORT) {
   });
 }
 
-const logServerError = function(errorMessage) {
+const logServerError = (errorMessage) => {
   logger.logError('Error', errorMessage);
 }
 

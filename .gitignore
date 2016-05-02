@@ -1,4 +1,4 @@
 node_modules
-public/build
+build
 .eslintcache
-npm-debug
+npm-debug.log

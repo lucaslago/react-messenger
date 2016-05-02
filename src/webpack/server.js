@@ -1,7 +1,7 @@
-const logger = require('./logger');
 const webpack = require('webpack');
 const WebpackDevServer = require('webpack-dev-server');
-const config = require('../webpack.config.js');
+const logger = require('../utils/logger');
+const config = require('../../webpack.config.js');
 
 const startWebpackServer = function (PORT) {
   const server = new WebpackDevServer(webpack(config), {
