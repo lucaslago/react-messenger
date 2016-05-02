@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom';
 import $        from 'jquery';
 import marked   from 'marked';
 import './css/base.css';
-
 var Comment = React.createClass({
   rawMarkup: function() {
     var rawMarkup = marked(this.props.children.toString(), {sanitize: true});
