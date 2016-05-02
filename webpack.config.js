@@ -18,7 +18,7 @@ const common = {
     entry: [PATHS.app],
     output: {
         path:    PATHS.build,
-        filename: 'bundle.js',
+        filename: 'bundle.js'
     },
     module: {
       loaders: [
@@ -29,8 +29,8 @@ const common = {
         },
         {
           test: /\.css$/,
-          loader: "style!css"
-         },
+          loader: 'style!css'
+         }
       ]
     },
     plugins: [
@@ -47,7 +47,7 @@ const availableConfigs = {
   'development': merge(common, {
     entry: [
       'webpack-dev-server/client?http://0.0.0.0:8079',
-      'webpack/hot/only-dev-server',
+      'webpack/hot/only-dev-server'
     ],
     plugins: [
       new webpack.HotModuleReplacementPlugin()

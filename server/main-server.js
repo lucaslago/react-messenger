@@ -2,7 +2,7 @@ const logger = require('./logger');
 const apiServer = require('./api-server');
 // TODO: remove this code duplication in many places
 const PORT = process.env.PORT || 8080;
-const PROD = process.env.NODE_ENV === "production";
+const PROD = process.env.NODE_ENV === 'production';
 logger.logSuccess('Environment', process.env.NODE_ENV);
 
 if(PROD) {

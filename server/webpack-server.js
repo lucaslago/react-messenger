@@ -6,7 +6,7 @@ const config = require('../webpack.config.js');
 const startWebpackServer = function (PORT) {
   const server = new WebpackDevServer(webpack(config), {
     proxy: {
-      "*" : `http://localhost:${PORT + 1}`
+      '*' : `http://localhost:${PORT + 1}`
     },
     // Enable history API fallback so HTML5 History API based
      // routing works. This is a good default that will come
@@ -20,7 +20,7 @@ const startWebpackServer = function (PORT) {
      progress: true,
 
      // Display only errors to reduce the amount of output.
-     stats: 'errors-only',
+     stats: 'errors-only'
     // host: process.env.HOST,
     // port: process.env.PORT
 
