@@ -1,11 +1,12 @@
 const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 const merge = require('webpack-merge');
 const validate = require('webpack-validator');
 const webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const WebpackBuildNotifierPlugin = require('webpack-build-notifier');
 
 const PATHS = {
-  app: path.join(__dirname, 'src/frontend/app.jsx'),
+  app: path.join(__dirname, 'src/frontend/app'),
   build: path.join(__dirname, '/build'),
   indexTemplate: path.join(__dirname, 'src/frontend/template.html')
 };
@@ -61,7 +62,8 @@ const availableConfigs = {
       'webpack/hot/only-dev-server'
     ],
     plugins: [
-      new webpack.HotModuleReplacementPlugin()
+      new webpack.HotModuleReplacementPlugin(),
+      new WebpackBuildNotifierPlugin({successSound:false})
     ],
     devtool: 'eval-source-map'
   }),
