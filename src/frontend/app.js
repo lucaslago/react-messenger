@@ -5,5 +5,5 @@ import './css/base.css';
 import CommentBox from './js/commentbox/commentBox';
 
 render(
-  <CommentBox/>, document.getElementById('content')
+  <CommentBox url='/api/comments' pollInterval={1000}/>, document.getElementById('content')
 );
