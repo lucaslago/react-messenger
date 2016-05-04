@@ -6,9 +6,13 @@ const rawMarkup = (htmlString) => {
   return { __html: rawMarkup};
 };
 
-export default React.createClass({
+class Comment extends React.Component {
 
-  render: function() {
+  constructor(props) {
+    super(props);
+  }
+
+  render() {
     return (
       <div className="comment">
         <h2 className="commentAuthor">
@@ -18,4 +22,7 @@ export default React.createClass({
       </div>
     );
   }
-});
+  
+}
+
+export default Comment;

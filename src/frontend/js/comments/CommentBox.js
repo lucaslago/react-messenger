@@ -3,29 +3,36 @@ import $            from 'jquery';
 import CommentList  from './CommentList';
 import CommentForm  from './CommentForm';
 
-export default React.createClass({
-  loadCommentsFromServer: function() {
+class CommentBox extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      data: []
+    };
+  }
+
+  loadCommentsFromServer = () => {
     $.ajax({
       url: this.props.url,
       dataType: 'json',
       type: 'GET',
       cache: false,
       success: function(comments) {
-        this.setState({data: comments});
+        this.setState({data:comments});
       }.bind(this),
       error: function(xhr, status, err) {
         console.error(this.props.url, status, err.toString());
       }.bind(this)
     });
-  },
-  getInitialState: function() {
-    return {data: []};
-  },
-  componentDidMount: function() {
+  }
+
+  componentDidMount = () => {
     this.loadCommentsFromServer();
     setInterval(this.loadCommentsFromServer, this.props.pollInterval);
-  },
-  handleCommentSubmit: function(data) {
+  }
+
+  handleCommentSubmit = (data) => {
     $.ajax({
       url: this.props.url,
       dataType: 'json',
@@ -39,8 +46,9 @@ export default React.createClass({
       }.bind(this)
     });
 
-  },
-  render: function() {
+  }
+
+  render() {
     return (
       <div className="commentBox">
         <h1>Comments</h1>
@@ -49,4 +57,6 @@ export default React.createClass({
       </div>
     );
   }
-});
+}
+
+export default CommentBox;

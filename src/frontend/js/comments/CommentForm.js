@@ -1,26 +1,30 @@
 import React from 'react';
-const emptyState = {author: '', text: ''};
 
-export default React.createClass({
-  handleAuthorChange: function(e) {
+class CommentForm extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {author: '', text: ''};
+  }
+
+  handleAuthorChange = (e) => {
     this.setState({author: e.target.value});
-  },
-  handleTextChange: function(e) {
+  }
+
+  handleTextChange = (e) => {
     this.setState({text: e.target.value});
-  },
-  handleSubmit: function(e) {
+  }
+
+  handleSubmit = (e) => {
     e.preventDefault();
     const author = this.state.author.trim(),
           text = this.state.text.trim();
     if(author && text) {
-      this.props.onCommentSubmit({author: author, text:text});
-      this.setState(emptyState);
+      this.props.onCommentSubmit({author: author, text: text});
+      this.setState({author: '', text: ''});
     }
-  },
-  getInitialState: function() {
-    return emptyState;
-  },
-  render: function() {
+  }
+
+  render() {
     const postData = {author: this.state.author, text: this.state.text};
     return (
       <form onSubmit={this.handleSubmit} className="commentForm">
@@ -30,4 +34,6 @@ export default React.createClass({
       </form>
     );
   }
-});
+}
+
+export default CommentForm;
