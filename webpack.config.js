@@ -3,7 +3,6 @@ const merge = require('webpack-merge');
 const validate = require('webpack-validator');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const WebpackBuildNotifierPlugin = require('webpack-build-notifier');
 
 const PATHS = {
   app: path.join(__dirname, 'src/frontend/app'),
@@ -11,10 +10,6 @@ const PATHS = {
   indexTemplate: path.join(__dirname, 'src/frontend/template.html'),
   eslintConfig: path.join(__dirname, '.eslintrc')
 };
-
-// not sure this is needed anymore
-process.env.BABEL_ENV = process.env.NODE_ENV;
-
 
 const common = {
     entry: [PATHS.app],
@@ -45,7 +40,7 @@ const common = {
     plugins: [
       new HtmlWebpackPlugin({
         template: PATHS.indexTemplate,
-        title: 'arroz'
+        title: 'Example'
       })
   ],
   resolve: {
@@ -59,22 +54,16 @@ const common = {
   }
 };
 
+const buildConfig = function(environment) {
+  switch(environment) {
+    case 'development':
+      const devConfig = require('./webpack.development.config');
+      return merge(common, devConfig);
+    default:
+      return common;
+  }
+}
 
-const availableConfigs = {
-  'development': merge(common, {
-    entry: [
-      'webpack-dev-server/client?http://0.0.0.0:8079',
-      'webpack/hot/only-dev-server'
-    ],
-    plugins: [
-      new webpack.HotModuleReplacementPlugin(),
-      new WebpackBuildNotifierPlugin({successSound:false})
-    ],
-    devtool: 'eval-source-map'
-  }),
-  'default': merge(common, {})
-};
-
-const currentConfig = availableConfigs[process.env.NODE_ENV] || availableConfigs['default'];
+const currentConfig = buildConfig(process.env.NODE_ENV);
 
 module.exports = validate(currentConfig);
