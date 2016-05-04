@@ -12,6 +12,7 @@ const PATHS = {
 };
 
 const common = {
+    devtool: 'source-map',
     entry: [PATHS.app],
     output: {
         path:    PATHS.build,

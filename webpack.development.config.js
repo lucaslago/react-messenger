@@ -1,4 +1,5 @@
 const WebpackBuildNotifierPlugin = require('webpack-build-notifier');
+const webpack = require('webpack');
 
 const config = {
   entry: [

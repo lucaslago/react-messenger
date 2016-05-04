@@ -11,7 +11,7 @@ const disableCaching = (req, res, next) => {
 };
 const logServerError = (errorMessage) => {
   logger.logError('Error', errorMessage);
-}
+};
 
 const startApiServer = function(PORT) {
   const app = express();
@@ -57,8 +57,8 @@ const startApiServer = function(PORT) {
 
 
   app.listen(app.get('port'), () => {
-    logger.logSuccess('API server started:', `http://localhost:${app.get('port')}/`)
+    logger.logSuccess('API server started:', `http://localhost:${app.get('port')}/`);
   });
-}
+};
 
 module.exports = startApiServer;
