@@ -9,7 +9,7 @@ export default React.createClass({
     this.setState({text: e.target.value});
   },
   handleSubmit: function(e) {
-    e.preventDefaut();
+    e.preventDefault();
     const author = this.state.author.trim(),
           text = this.state.text.trim();
     if(author && text) {

@@ -8,6 +8,7 @@ export default React.createClass({
     $.ajax({
       url: this.props.url,
       dataType: 'json',
+      type: 'GET',
       cache: false,
       success: function(comments) {
         this.setState({data: comments});
@@ -25,7 +26,18 @@ export default React.createClass({
     setInterval(this.loadCommentsFromServer, this.props.pollInterval);
   },
   handleCommentSubmit: function(data) {
-    //TODO
+    $.ajax({
+      url: this.props.url,
+      dataType: 'json',
+      type: 'POST',
+      data: data,
+      success: function(data) {
+        this.setState({data: data});
+      }.bind(this),
+      error: function(xhr, status, err) {
+        console.error(this.props.url, status, err.toString());
+      }.bind(this)
+    });
 
   },
   render: function() {
