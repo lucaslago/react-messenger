@@ -4,12 +4,12 @@ import Comment from './Comment';
 export default React.createClass({
   render: function() {
     const commentNodes = this.props.comments.map((c) => {
-      return <Comment key={c.id} author={c.author}>{c.text}</Comment>
+      return <Comment key={c.id} author={c.author}>{c.text}</Comment>;
     });
     return (
-      <div className='commentList'>
+      <div className="commentList">
         {commentNodes}
       </div>
     );
   }
-})
+});

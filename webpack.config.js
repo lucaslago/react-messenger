@@ -8,7 +8,8 @@ const WebpackBuildNotifierPlugin = require('webpack-build-notifier');
 const PATHS = {
   app: path.join(__dirname, 'src/frontend/app'),
   build: path.join(__dirname, '/build'),
-  indexTemplate: path.join(__dirname, 'src/frontend/template.html')
+  indexTemplate: path.join(__dirname, 'src/frontend/template.html'),
+  eslintConfig: path.join(__dirname, '.eslintrc')
 };
 
 // not sure this is needed anymore
@@ -24,9 +25,9 @@ const common = {
     module: {
       preLoaders: [
         {
-          test: /\.jsx?$/,
-          loaders: ['eslint-loader'],
-          include: PATHS.app
+          test: /\.js?$/,
+          loaders: ['eslint'],
+          exclude: /node_modules/,
         }
       ],
       loaders: [
@@ -51,6 +52,10 @@ const common = {
     alias: {
       buildDir: PATHS.build
     }
+  },
+  eslint: {
+    configFile: PATHS.eslintConfig,
+    emitError: true
   }
 };
 

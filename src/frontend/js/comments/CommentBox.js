@@ -24,13 +24,17 @@ export default React.createClass({
     this.loadCommentsFromServer();
     setInterval(this.loadCommentsFromServer, this.props.pollInterval);
   },
+  handleCommentSubmit: function(data) {
+    //TODO
+
+  },
   render: function() {
     return (
       <div className="commentBox">
         <h1>Comments</h1>
         <CommentList comments={this.state.data}/>
-        <CommentForm/>
+        <CommentForm onCommentSubmit={this.handleCommentSubmit}/>
       </div>
-    )
+    );
   }
 });
