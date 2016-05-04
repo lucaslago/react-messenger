@@ -11,8 +11,8 @@
     "start": "NODE_ENV=production node ./src/main-server",
     "dev": " npm run clean && NODE_ENV=development node ./src/main-server",
     "test": "test",
-    "build": "npm run clean && webpack",
-    "postinstall": "NODE_ENV=production npm run build",
+    "build": "npm run clean && NODE_ENV=production webpack",
+    "postinstall": "npm run build",
     "lint": "eslint ./src --ext .js --ext .jsx --cache"
   },
   "author": "Lucas Lago",
