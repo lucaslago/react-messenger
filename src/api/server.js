@@ -3,27 +3,24 @@ const fs = require('fs');
 const path = require('path');
 const express = require('express');
 const bodyParser = require('body-parser');
+const COMMENTS_FILE = path.join(__dirname, 'comments.json');
+
+const disableCaching = (req, res, next) => {
+    res.setHeader('Cache-Control', 'no-cache');
+    next();
+};
+const logServerError = (errorMessage) => {
+  logger.logError('Error', errorMessage);
+}
 
 const startApiServer = function(PORT) {
   const app = express();
-  const COMMENTS_FILE = path.join(__dirname, 'comments.json');
-
-  app.set('port', PORT);
 
   app.use('/', express.static(path.join(__dirname, '../../build')));
   app.use(bodyParser.json());
   app.use(bodyParser.urlencoded({extended: true}));
-
-  // Additional middleware which will set headers that we need on each request.
-  app.use((req, res, next) => {
-      // Set permissive CORS header - this allows this server to be used only as
-      // an API server in conjunction with something like webpack-dev-server.
-      res.setHeader('Access-Control-Allow-Origin', '*');
-
-      // Disable caching so we'll always get the latest comments.
-      res.setHeader('Cache-Control', 'no-cache');
-      next();
-  });
+  app.use(disableCaching);
+  app.set('port', PORT);
 
   app.get('/api/comments', (req, res) => {
     fs.readFile(COMMENTS_FILE, (err, data) => {
@@ -62,10 +59,6 @@ const startApiServer = function(PORT) {
   app.listen(app.get('port'), () => {
     logger.logSuccess('API server started:', `http://localhost:${app.get('port')}/`)
   });
-}
-
-const logServerError = (errorMessage) => {
-  logger.logError('Error', errorMessage);
 }
 
 module.exports = startApiServer;
