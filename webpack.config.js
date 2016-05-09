@@ -21,7 +21,7 @@ const common = {
     module: {
       preLoaders: [
         {
-          test: /\.js?$/,
+          test: /\.js|.jsx?$/,
           loaders: ['eslint'],
           exclude: /node_modules/,
         }

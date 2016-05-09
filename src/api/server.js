@@ -38,8 +38,8 @@ const startApiServer = function(PORT) {
         logServerError(err);
         process.exit(1);
       }
-      var comments = JSON.parse(data);
-      var newComment = {
+      const comments = JSON.parse(data);
+      const newComment = {
         id: Date.now(),
         author: req.body.author,
         text: req.body.text

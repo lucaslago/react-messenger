@@ -2,7 +2,7 @@ import React  from 'react';
 import marked from 'marked';
 
 const rawMarkup = (htmlString) => {
-  const rawMarkup = marked(htmlString, {sanitize: true});
+  const rawMarkup = marked(htmlString || '', {sanitize: true});
   return { __html: rawMarkup};
 };
 
@@ -22,7 +22,7 @@ class Comment extends React.Component {
       </div>
     );
   }
-  
+
 }
 
 export default Comment;
