@@ -8,11 +8,12 @@
   "main": "index.js",
   "scripts": {
     "clean": "rm -rf ./build",
-    "start": "NODE_ENV=production node ./src/main-server",
-    "dev": " npm run clean && NODE_ENV=development node ./src/main-server",
+    "start:prod": "export NODE_ENV=production && npm run build:prod && node ./src/main-server",
+    "start:dev": "export NODE_ENV=development && node ./src/main-server",
+    "build:dev": "export NODE_ENV=development && npm run clean && webpack",
+    "build:prod": "export NODE_ENV=production && npm run clean && webpack",
     "test": "mocha -R nyan -w --check-leaks",
-    "build": "npm run clean && NODE_ENV=production webpack",
-    "postinstall": "npm run build",
+    "test-unit": "export NODE_ENV=test && karma start",
     "lint": "eslint ./src --ext .js --ext .jsx --cache"
   },
   "author": "Lucas Lago",
@@ -45,7 +46,15 @@
   "devDependencies": {
     "babel-cli": "^6.7.7",
     "babel-preset-react-hmre": "^1.1.1",
+    "expect": "^1.20.1",
+    "karma": "^0.13.22",
+    "karma-chrome-launcher": "^1.0.1",
+    "karma-cli": "^1.0.0",
+    "karma-mocha": "^1.0.1",
+    "karma-nyan-reporter": "^0.2.4",
+    "karma-webpack": "^1.7.0",
     "mocha": "^2.4.5",
+    "react-addons-test-utils": "^15.0.2",
     "webpack-dev-middleware": "^1.6.1",
     "webpack-dev-server": "^1.14.1"
   }
