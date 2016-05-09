@@ -1,6 +1,6 @@
 import React      from 'react';
 import {render}   from 'react-dom';
-import CommentBox from './js/comments/commentBox';
+import CommentBox from './js/comments/commentBox.jsx';
 import './css/base.css';
 
 render(

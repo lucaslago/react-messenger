@@ -5,7 +5,7 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const PATHS = {
-  app: path.join(__dirname, 'src/frontend/app'),
+  app: path.join(__dirname, 'src/frontend/app.jsx'),
   build: path.join(__dirname, '/build'),
   indexTemplate: path.join(__dirname, 'src/frontend/template.html'),
   eslintConfig: path.join(__dirname, '.eslintrc')
@@ -65,7 +65,7 @@ const buildConfig = function(environment) {
   }
 }
 const currentConfig = buildConfig(process.env.NODE_ENV);
-//required to activate environment presets in .babelrc 
+//required to activate environment presets in .babelrc
 process.env.BABEL_ENV = process.env.NODE_ENV;
 
 module.exports = validate(currentConfig);

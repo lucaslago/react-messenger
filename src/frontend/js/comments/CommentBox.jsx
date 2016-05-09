@@ -1,7 +1,7 @@
 import React        from 'react';
 import $            from 'jquery';
-import CommentList  from './CommentList';
-import CommentForm  from './CommentForm';
+import CommentList  from './CommentList.jsx';
+import CommentForm  from './CommentForm.jsx';
 
 class CommentBox extends React.Component {
 
