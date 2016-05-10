@@ -14,8 +14,7 @@ class CommentForm extends React.Component {
     this.setState({text: e.target.value});
   }
 
-  handleSubmit = (e) => {
-    e.preventDefault();
+  handleSubmit = () => {
     const author = this.state.author.trim(),
           text = this.state.text.trim();
     if(author && text) {
@@ -27,11 +26,11 @@ class CommentForm extends React.Component {
   render() {
     const postData = {author: this.state.author, text: this.state.text};
     return (
-      <form onSubmit={this.handleSubmit} className="commentForm">
+      <div className="commentForm">
         <input onChange={this.handleAuthorChange} value={postData.author} type="text" placeholder="Your name"/>
         <input onChange={this.handleTextChange} value={postData.text} type="text" placeholder="Say something..."/>
-        <input type="submit" value="Post"/>
-      </form>
+        <button onClick={this.handleSubmit} type="submit"> Post </button>
+      </div>
     );
   }
 }
