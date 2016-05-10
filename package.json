@@ -12,8 +12,8 @@
     "start:dev": "export NODE_ENV=development && node ./src/main-server",
     "build:dev": "export NODE_ENV=development && npm run clean && webpack",
     "build:prod": "export NODE_ENV=production && npm run clean && webpack",
-    "test": "export NODE_ENV=test && mocha ./src/**/*-Spec.js --compilers js:babel-core/register --reporter nyan --recursive --check-leaks --full-trace",
-    "test:watch": "export NODE_ENV=test && mocha ./src/**/*-Spec.js --compilers js:babel-core/register --reporter nyan --recursive --check-leaks --full-trace -w",
+    "test": "export NODE_ENV=test && mocha --require ./tests/setup.js --compilers js:babel-core/register --reporter nyan --recursive --check-leaks --full-trace ./src/**/*-Spec.js",
+    "test:watch": "export NODE_ENV=test && mocha --require ./tests/setup.js --compilers js:babel-core/register --reporter nyan --recursive --check-leaks --full-trace -w ./src/**/*-Spec.js",
     "lint": "eslint ./src --ext .js --ext .jsx --cache"
   },
   "author": "Lucas Lago",
@@ -50,6 +50,7 @@
     "chai-enzyme": "^0.4.2",
     "enzyme": "^2.3.0",
     "expect": "^1.20.1",
+    "jsdom": "^9.0.0",
     "mocha": "^2.4.5",
     "react-addons-test-utils": "^15.0.2",
     "react-shallow-testutils": "^2.0.0",

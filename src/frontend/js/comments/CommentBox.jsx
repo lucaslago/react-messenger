@@ -1,7 +1,7 @@
 import React        from 'react';
-import $            from 'jquery';
 import CommentList  from './commentlist/CommentList.jsx';
 import CommentForm  from './commentform/CommentForm.jsx';
+import {get, post}  from '../utils/ajax';
 
 class CommentBox extends React.Component {
 
@@ -13,18 +13,15 @@ class CommentBox extends React.Component {
   }
 
   loadCommentsFromServer = () => {
-    $.ajax({
-      url: this.props.url,
-      dataType: 'json',
-      type: 'GET',
-      cache: false,
-      success: function(comments) {
-        this.setState({data:comments});
-      }.bind(this),
-      error: function(xhr, status, err) {
-        console.error(this.props.url, status, err.toString());
-      }.bind(this)
-    });
+    const promise = get(this.props.url);
+
+    promise.done(function(data) {
+      this.setState({data: data});
+    }.bind(this));
+
+    promise.error(function(xhr, status, err) {
+      console.error(this.props.url, status, err.toString());
+    }.bind(this));
   }
 
   componentDidMount = () => {
@@ -33,18 +30,15 @@ class CommentBox extends React.Component {
   }
 
   handleCommentSubmit = (data) => {
-    $.ajax({
-      url: this.props.url,
-      dataType: 'json',
-      type: 'POST',
-      data: data,
-      success: function(data) {
-        this.setState({data: data});
-      }.bind(this),
-      error: function(xhr, status, err) {
-        console.error(this.props.url, status, err.toString());
-      }.bind(this)
-    });
+    const promise = post(this.props.url, data);
+
+    promise.done(function(data) {
+      this.setState({data: data});
+    }.bind(this));
+
+    promise.error(function(xhr, status, err) {
+      console.error(this.props.url, status, err.toString());
+    }.bind(this));
 
   }
 
