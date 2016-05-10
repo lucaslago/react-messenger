@@ -11,3 +11,6 @@ Using this repository to learn about React ecosystem following facebook's offici
 - npm install
 - npm run start:dev
 - browse to http://localhost:8079
+
+# Tests
+- npm test
