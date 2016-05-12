@@ -14,7 +14,8 @@
     "build:prod": "export NODE_ENV=production && npm run clean && webpack",
     "test": "export NODE_ENV=test && mocha --require ./tests/setup.js --compilers js:babel-core/register --reporter nyan --recursive --check-leaks --full-trace ./src/**/*-Spec.js",
     "test:watch": "export NODE_ENV=test && mocha --require ./tests/setup.js --compilers js:babel-core/register --reporter nyan --recursive --check-leaks --full-trace -w ./src/**/*-Spec.js",
-    "lint": "eslint ./src --ext .js --ext .jsx --cache"
+    "lint": "eslint ./src --ext .js --ext .jsx --cache",
+    "ci": "npm run lint && npm run test"
   },
   "author": "Lucas Lago",
   "license": "MIT",
