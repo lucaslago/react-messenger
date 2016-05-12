@@ -1,7 +1,7 @@
-import sinon            from 'sinon';
-import {expect, assert} from 'chai';
-import * as ajax        from '../../utils/ajax';
-import * as service     from './service';
+import sinon        from 'sinon';
+import {expect}     from 'chai';
+import * as ajax    from '../../utils/ajax';
+import * as service from './service';
 
 describe('service', () => {
   const commentsApiUrl = 'fake/comments';
@@ -25,12 +25,14 @@ describe('service', () => {
 
   it('should get comments from server', () => {
     service.getCommentsFromApi(commentsApiUrl);
-    assert(getStub.calledWithMatch(commentsApiUrl));
+    getStub.calledWithMatch(commentsApiUrl);
   });
 
   it('should post a new comment from server', () => {
     const comment = {};
+
     service.createNewComment(commentsApiUrl, comment);
-    assert(postStub.calledWithMatch(commentsApiUrl, comment));
+
+    postStub.calledWithMatch(commentsApiUrl, comment);
   });
 });
