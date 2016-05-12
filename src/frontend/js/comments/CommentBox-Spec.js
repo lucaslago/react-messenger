@@ -1,7 +1,7 @@
-import React            from 'react';
-import {shallow, mount} from 'enzyme';
-import {expect}         from 'chai';
-import CommentBox       from './CommentBox.jsx';
+import React                from 'react';
+import {shallow, mount}     from 'enzyme';
+import {expect}             from 'chai';
+import CommentBox           from './CommentBox.jsx';
 
 describe('CommentBox', () => {
   let wrapper;
@@ -10,16 +10,12 @@ describe('CommentBox', () => {
     wrapper = shallow(<CommentBox url="/api/comments" pollInterval={1000}/>)
   });
 
-  it('should render a wrapper div', () => {
-    expect(wrapper.type()).to.equal('div');
-  });
-
   it('should have the correct css class', () => {
     expect(wrapper.hasClass('commentBox')).to.equal(true);
   });
 
-  it('should have a heading', () => {
-    expect(wrapper.find('h1')).to.have.length(1);
+  it('should render heading text', () => {
+    expect(wrapper.find('h1').text()).to.equal('Comments');
   });
 
   it('should render CommentList component', () => {

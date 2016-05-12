@@ -1,7 +1,7 @@
-import React, {Component} from 'react';
-import CommentList        from './commentlist/CommentList.jsx';
-import CommentForm        from './commentform/CommentForm.jsx';
-import {get, post}        from '../utils/ajax';
+import React, {Component}                     from 'react';
+import CommentList                            from './commentlist/CommentList.jsx';
+import CommentForm                            from './commentform/CommentForm.jsx';
+import {getCommentsFromAPI, createNewComment} from './service/service.js';
 
 class CommentBox extends Component {
 
@@ -13,14 +13,8 @@ class CommentBox extends Component {
   }
 
   loadCommentsFromServer = () => {
-    const promise = get(this.props.url);
-
-    promise.done(function(data) {
+    getCommentsFromAPI(this.props.url).done(function(data) {
       this.setState({data: data});
-    }.bind(this));
-
-    promise.error(function(xhr, status, err) {
-      console.error(this.props.url, status, err.toString());
     }.bind(this));
   }
 
@@ -30,14 +24,8 @@ class CommentBox extends Component {
   }
 
   handleCommentSubmit = (data) => {
-    const promise = post(this.props.url, data);
-
-    promise.done(function(data) {
+    createNewComment(this.props.url, data).done(function(data) {
       this.setState({data: data});
-    }.bind(this));
-
-    promise.error(function(xhr, status, err) {
-      console.error(this.props.url, status, err.toString());
     }.bind(this));
 
   }

@@ -12,10 +12,6 @@ describe('CommentList', () => {
     wrapper = shallow(<CommentList comments={comments}/>);
   });
 
-  it('should render wrapper div', () => {
-    expect(wrapper.type()).to.equal('div');
-  });
-
   it('should have correct css class', () => {
     expect(wrapper.hasClass('commentList')).to.equal(true);
   });

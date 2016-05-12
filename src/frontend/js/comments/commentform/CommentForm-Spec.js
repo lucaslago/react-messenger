@@ -2,7 +2,7 @@ import React          from 'react';
 import { shallow }    from 'enzyme';
 import chai, {expect} from 'chai';
 import chaiEnzyme     from 'chai-enzyme';
-import sinon from 'sinon';
+import sinon          from 'sinon';
 import CommentForm    from './CommentForm.jsx';
 chai.use(chaiEnzyme());
 
@@ -12,10 +12,6 @@ describe('CommentForm', () => {
 
   beforeEach(() => {
     wrapper = shallow(<CommentForm onCommentSubmit={onCommentSubmit}/>);
-  });
-
-  it('should render a wrapper div', () => {
-    expect(wrapper.type()).to.equal('div');
   });
 
   it('should have the correct css class', () => {

@@ -15,10 +15,6 @@ describe('Comment', () => {
     wrapper = shallow(<Comment author={author}>{boldText}</Comment>);
   });
 
-  it('should render a wrapper div', () => {
-    expect(wrapper.type()).to.equal('div');
-  });
-
   it('should have correct css class', () => {
     expect(wrapper.hasClass('comment')).to.equal(true);
   });
