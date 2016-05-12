@@ -1,8 +1,7 @@
-import React          from 'react';
-import {shallow, mount}    from 'enzyme';
-import {expect}       from 'chai';
-import sinon          from 'sinon';
-import CommentBox    from './CommentBox.jsx';
+import React            from 'react';
+import {shallow, mount} from 'enzyme';
+import {expect}         from 'chai';
+import CommentBox       from './CommentBox.jsx';
 
 describe('CommentBox', () => {
   let wrapper;

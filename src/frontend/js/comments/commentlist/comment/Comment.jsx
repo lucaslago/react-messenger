@@ -1,12 +1,12 @@
-import React  from 'react';
-import marked from 'marked';
+import React, {Component}  from 'react';
+import marked              from 'marked';
 
 const rawMarkup = (htmlString) => {
   const rawMarkup = marked(htmlString || '', {sanitize: true});
   return { __html: rawMarkup};
 };
 
-class Comment extends React.Component {
+class Comment extends Component {
 
   constructor(props) {
     super(props);

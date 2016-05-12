@@ -1,9 +1,9 @@
-import React        from 'react';
-import CommentList  from './commentlist/CommentList.jsx';
-import CommentForm  from './commentform/CommentForm.jsx';
-import {get, post}  from '../utils/ajax';
+import React, {Component} from 'react';
+import CommentList        from './commentlist/CommentList.jsx';
+import CommentForm        from './commentform/CommentForm.jsx';
+import {get, post}        from '../utils/ajax';
 
-class CommentBox extends React.Component {
+class CommentBox extends Component {
 
   constructor(props) {
     super(props);
