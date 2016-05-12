@@ -1,5 +1,5 @@
 import * as ajax from '../../utils/ajax';
-
+var faillint;
 const onError = (xhr, status, err) => {
   console.error(status, err.toString());
 };
