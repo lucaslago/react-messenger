@@ -8,6 +8,7 @@
   "main": "index.js",
   "scripts": {
     "clean": "rm -rf ./build",
+    "start": "npm run start:prod",
     "start:prod": "export NODE_ENV=production && npm run build:prod && node ./src/main-server",
     "start:dev": "export NODE_ENV=development && node ./src/main-server",
     "build:dev": "export NODE_ENV=development && npm run clean && webpack",
@@ -15,8 +16,7 @@
     "test": "export NODE_ENV=test && mocha --require ./tests/setup.js --compilers js:babel-core/register --reporter nyan --recursive --check-leaks --full-trace ./src/**/*-Spec.js",
     "test:watch": "export NODE_ENV=test && mocha --require ./tests/setup.js --compilers js:babel-core/register --reporter nyan --recursive --check-leaks --full-trace -w ./src/**/*-Spec.js",
     "lint": "eslint ./src --ext .js --ext .jsx --cache",
-    "ci": "npm run lint && npm run test",
-    "heroku-postbuild": "npm run start:prod"
+    "ci": "npm run lint && npm run test"
   },
   "author": "Lucas Lago",
   "license": "MIT",
