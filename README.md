@@ -7,14 +7,17 @@ Using this repository to learn about React ecosystem following facebook's offici
 # Tech stack
 - NodeJS + Express | REST API
 - ReactJS
+- Mocha / Chai / Sinon
+- Enzyme
 - Webpack
 - ES6 / Babel
-- Heroku
+- Heroku 
+- Travis
 
 # How to run
 - npm install
 - npm run start:dev
 - browse to http://localhost:8079
 
-# Tests
+# Running tests
 - npm test
